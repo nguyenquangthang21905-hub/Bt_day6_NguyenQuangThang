@@ -1,0 +1,24 @@
+@model Genre
+@{
+    ViewData["Title"] = "Xóa thể loại";
+}
+
+<h1 class="h2 page-heading mb-4">Xóa thể loại</h1>
+<div class="col-lg-7">
+    @if (Model.Movies.Count > 0)
+    {
+        <div class="alert alert-warning">Thể loại này đang có @Model.Movies.Count phim và không thể xóa.</div>
+    }
+    else
+    {
+        <div class="alert alert-danger">Bạn có chắc chắn muốn xóa thể loại <strong>@Model.Name</strong> không?</div>
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Bạn chắc chắn muốn xóa thể loại này?');">
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a>
+        </form>
+    }
+    @if (Model.Movies.Count > 0)
+    {
+        <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a>
+    }
+</div>

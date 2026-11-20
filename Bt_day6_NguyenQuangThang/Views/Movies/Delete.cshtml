@@ -1,0 +1,18 @@
+@model Movie
+@{
+    ViewData["Title"] = "Xóa phim";
+}
+
+<h1 class="h2 page-heading mb-4">Xóa phim</h1>
+<div class="col-lg-7">
+    <div class="alert alert-danger">Bạn có chắc chắn muốn xóa phim <strong>@Model.Title</strong> không?</div>
+    <dl class="row">
+        <dt class="col-sm-4">Ngày phát hành</dt><dd class="col-sm-8">@Model.ReleaseDate.ToString("dd/MM/yyyy")</dd>
+        <dt class="col-sm-4">Thời lượng</dt><dd class="col-sm-8">@Model.Duration phút</dd>
+        <dt class="col-sm-4">Thể loại</dt><dd class="col-sm-8">@Model.Genre?.Name</dd>
+    </dl>
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Bạn chắc chắn muốn xóa phim này?');">
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a>
+    </form>
+</div>

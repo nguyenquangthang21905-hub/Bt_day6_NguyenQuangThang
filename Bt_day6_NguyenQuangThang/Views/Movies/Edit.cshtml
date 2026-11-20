@@ -1,0 +1,36 @@
+@model Movie
+@{
+    ViewData["Title"] = "Sửa phim";
+}
+
+<h1 class="h2 page-heading mb-4">Sửa phim</h1>
+<div class="col-lg-7">
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ReleaseDate" class="form-label"></label>
+            <input asp-for="ReleaseDate" type="date" class="form-control" />
+            <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Duration" class="form-label"></label>
+            <input asp-for="Duration" type="number" min="1" class="form-control" />
+            <span asp-validation-for="Duration" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="GenreId" class="form-label"></label>
+            <select asp-for="GenreId" asp-items="ViewBag.GenreId" class="form-select"><option value="0">-- Chọn thể loại --</option></select>
+            <span asp-validation-for="GenreId" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a>
+    </form>
+</div>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
